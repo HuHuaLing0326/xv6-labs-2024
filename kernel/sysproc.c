@@ -91,3 +91,13 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_trace(void)
+{
+  int tmask;
+  
+  argint(0, &tmask); // 从用户进程获取第 0 个整数参数，并存入 mask
+  myproc()->tmask = tmask;
+  return 0;
+}
